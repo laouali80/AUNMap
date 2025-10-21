@@ -1,0 +1,224 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50122073008599, 9.186484396010917, 189.0564962466571]
+      },
+      "properties": {
+        "name": "FF",
+        "description": { "@type": "html", "value": "<div>Male Hostel</div>" },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "05ED4AFD393B00D5E0D8"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50053813377845, 9.18633193727263, 190.1693087921912]
+      },
+      "properties": {
+        "name": "EE",
+        "description": {
+          "@type": "html",
+          "value": "<div>Male Hostel<br></div>"
+        },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "08FA228D863B00D7F0F8"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50108023379367, 9.187060633086405, 188.2405052563733]
+      },
+      "properties": {
+        "name": "BB",
+        "description": { "@type": "html", "value": "<div>Male Hostel</div>" },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "073B1721123B00D88343"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50040182372765, 9.186897889716626, 189.0389128857061]
+      },
+      "properties": {
+        "name": "AA",
+        "description": { "@type": "html", "value": "<div>Female Hostel</div>" },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "0E3141BD533B00D95EEC"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.5020372942021, 9.18669311388696, 187.9185997908994]
+      },
+      "properties": {
+        "name": "Aisha Kande",
+        "description": { "@type": "html", "value": "<div>Female Hostel</div>" },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "052D570BCB3B00D9F9CF"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50192360367322, 9.18724202392796, 188.2165163151322]
+      },
+      "properties": {
+        "name": "CC",
+        "description": {
+          "@type": "html",
+          "value": "<div>Female Hostel<br></div>"
+        },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "0A411E2A723B00DA8CE3"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.5025779158826, 9.187410369549658, 186.7222374573869]
+      },
+      "properties": {
+        "name": "DD",
+        "description": { "@type": "html", "value": "<div>Female Hostel</div>" },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "00CC4CA3D73B00DB0060"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50035542548965, 9.187818334162785, 189.1186978486821]
+      },
+      "properties": {
+        "name": "Gabr. Volpi Boys",
+        "description": { "@type": "html", "value": "<div>Male Hostel</div>" },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "0DDF9A69313B00DBD44B"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50269551483637, 9.188328418429107, 183.9685878646589]
+      },
+      "properties": {
+        "name": "Ros. Volpi Females",
+        "description": {
+          "@type": "html",
+          "value": "<div>Females Hostel<br></div>"
+        },
+        "styleUrl": "#__managed_style_04CA5BEF993B00D7A3F0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2099&scale=4"
+      },
+      "id": "072B6DE2B83B00DDB538"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [12.50022108480058, 9.188945448638753, 190.3784223377166]
+      },
+      "properties": {
+        "name": "Cafeteria",
+        "description": { "@type": "html", "value": "<div>Dining Hall</div>" },
+        "styleUrl": "#__managed_style_059C050EE73B00E1FEB0",
+        "fill-opacity": 0.25098039215686274,
+        "fill": "#ffffff",
+        "stroke-opacity": 1,
+        "stroke": "#fbc02d",
+        "stroke-width": 4,
+        "icon-offset": [64, 128],
+        "icon-offset-units": ["pixels", "insetPixels"],
+        "icon": "https://earth.google.com/earth/document/icon?color=1976d2&id=2130&scale=4"
+      },
+      "id": "0DF11EE4403B00DEBE86"
+    }
+  ]
+}
