@@ -58,27 +58,7 @@ const ProfileScreen = () => {
     {
       id: "2",
       label: "Email",
-      value: "sarah.johnson@university.edu",
-    },
-    {
-      id: "3",
-      label: "Student ID",
-      value: "STU-2024-001",
-    },
-    {
-      id: "4",
-      label: "Academic Year",
-      value: "Junior",
-    },
-    {
-      id: "5",
-      label: "Major",
-      value: "Computer Science",
-    },
-    {
-      id: "6",
-      label: "Member Since",
-      value: "9/15/2022",
+      value: "sarah.johnson@aun.edu.ng",
     },
   ];
 
@@ -114,31 +94,6 @@ const ProfileScreen = () => {
     </TouchableOpacity>
   );
 
-  const renderNavItem = (item) => (
-    <TouchableOpacity
-      key={item.id}
-      style={styles.navItem}
-      onPress={() => navigation.navigate(item.screen)}
-    >
-      <Text
-        style={[
-          styles.navIcon,
-          item.active ? styles.navIconActive : styles.navIconInactive,
-        ]}
-      >
-        {item.icon}
-      </Text>
-      <Text
-        style={[
-          styles.navText,
-          item.active ? styles.navTextActive : styles.navTextInactive,
-        ]}
-      >
-        {item.title}
-      </Text>
-    </TouchableOpacity>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#F97316" barStyle="light-content" />
@@ -159,8 +114,7 @@ const ProfileScreen = () => {
           </View>
           <View style={styles.profileDetails}>
             <Text style={styles.profileName}>Sarah Johnson</Text>
-            <Text style={styles.profileRole}>Junior • Computer Science</Text>
-            <Text style={styles.profileId}>STU-2024-001</Text>
+            <Text style={styles.profileRole}>sarah.johnson@aun.edu.ng</Text>
           </View>
         </View>
 
@@ -269,7 +223,16 @@ const ProfileScreen = () => {
 
             <TouchableOpacity
               style={{
-                backgroundColor: "blue",
+                backgroundColor: "#2563EB",
+                // paddingVertical: 14,
+                // borderRadius: 12,
+                // alignItems: "center",
+                // marginBottom: 12,
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 8,
+                marginTop: 16,
                 paddingVertical: 12,
                 borderRadius: 8,
                 flex: 1,
@@ -277,8 +240,8 @@ const ProfileScreen = () => {
               }}
               onPress={() => navigation.navigate("Login")}
             >
-              <LogOut size={20} color="#EF4444" />
-              <Text>Sign out</Text>
+              <LogOut size={20} color="white" />
+              <Text style={{ color: "white" }}>Sign out</Text>
             </TouchableOpacity>
           </View>
         )}

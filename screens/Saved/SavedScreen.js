@@ -130,14 +130,6 @@ const SavedScreen = () => {
     },
   ];
 
-  // Bottom navigation items
-  const navItems = [
-    { id: "1", title: "Home", icon: "🏠", active: false, screen: "Home" },
-    { id: "2", title: "Map", icon: "🗺️", active: false, screen: "Map" },
-    { id: "3", title: "Saved", icon: "🔖", active: true, screen: "Saved" },
-    { id: "4", title: "Profile", icon: "👤", active: false, screen: "Profile" },
-  ];
-
   const handleRemoveSaved = (locationId) => {
     // Handle remove from saved locations
     console.log("Remove location:", locationId);
@@ -224,31 +216,6 @@ const SavedScreen = () => {
     </View>
   );
 
-  const renderNavItem = (item) => (
-    <TouchableOpacity
-      key={item.id}
-      style={styles.navItem}
-      onPress={() => navigation.navigate(item.screen)}
-    >
-      <Text
-        style={[
-          styles.navIcon,
-          item.active ? styles.navIconActive : styles.navIconInactive,
-        ]}
-      >
-        {item.icon}
-      </Text>
-      <Text
-        style={[
-          styles.navText,
-          item.active ? styles.navTextActive : styles.navTextInactive,
-        ]}
-      >
-        {item.title}
-      </Text>
-    </TouchableOpacity>
-  );
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -256,16 +223,7 @@ const SavedScreen = () => {
       {/* Header Section */}
       <View style={styles.header}>
         <View style={styles.headerTop}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-          >
-            <Text style={styles.backIcon}>⬅️</Text>
-          </TouchableOpacity>
           <Text style={styles.headerTitle}>Saved Locations</Text>
-          <TouchableOpacity style={styles.menuButton}>
-            <Text style={styles.menuIcon}>⋮</Text>
-          </TouchableOpacity>
         </View>
 
         <View style={styles.searchContainer}>
@@ -344,9 +302,6 @@ const SavedScreen = () => {
           ))}
         </View>
       </ScrollView>
-
-      {/* Bottom Navigation */}
-      {/* <View style={styles.bottomNav}>{navItems.map(renderNavItem)}</View> */}
     </SafeAreaView>
   );
 };
@@ -375,7 +330,7 @@ const styles = StyleSheet.create({
   },
   headerTop: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     marginBottom: 16,
   },

@@ -22,7 +22,6 @@ const SignupScreen = () => {
     firstName: "",
     lastName: "",
     email: "",
-    studentId: "",
     password: "",
     confirmPassword: "",
   });
@@ -96,14 +95,6 @@ const SignupScreen = () => {
 
                 <TextInput
                   style={styles.input}
-                  placeholder="Student ID"
-                  placeholderTextColor="#6B7280"
-                  value={formData.studentId}
-                  onChangeText={(text) => handleInputChange("studentId", text)}
-                />
-
-                <TextInput
-                  style={styles.input}
                   placeholder="Password"
                   placeholderTextColor="#6B7280"
                   secureTextEntry
@@ -137,7 +128,10 @@ const SignupScreen = () => {
                   </Text>
                 </View>
 
-                <TouchableOpacity style={styles.signupButton}>
+                <TouchableOpacity
+                  style={styles.signupButton}
+                  onPress={() => navigation.navigate("Navigation")}
+                >
                   <Text style={styles.signupButtonText}>Create Account</Text>
                 </TouchableOpacity>
 
