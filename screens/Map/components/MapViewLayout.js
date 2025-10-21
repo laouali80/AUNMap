@@ -35,68 +35,46 @@ const MapViewLayout = () => {
   //   getCurrentLocation();
   // }, []);
 
-  useEffect(() => {
-    // === Handle University Polygon (polygonData1) ===
-    if (polygonData2?.features?.length) {
-      const polygonFeature = polygonData2.features[0];
+  // useEffect(() => {
+  //   // === Handle University Polygon (polygonData1) ===
+  //   if (polygonData2?.features?.length) {
+  //     const polygonFeature = polygonData2.features[0];
 
-      if (polygonFeature.geometry.type === "Polygon") {
-        const rawCoords = polygonFeature.geometry.coordinates[0]; // outer ring
-        const formattedPolygon = rawCoords.map(([lng, lat]) => ({
-          latitude: lat,
-          longitude: lng,
-        }));
-        setPolygonCoordinates(formattedPolygon); // <- set university layout polygon
-        const bounds = getPolygonBounds(formattedPolygon);
-        setMapBounds(bounds);
-      }
-    }
-
-    // === Handle Marker Points (polygonData1) ===
-    if (polygonData1?.features?.length) {
-      const markerFeatures = polygonData1.features.filter(
-        (f) => f.geometry.type === "Point"
-      );
-
-      const markers = markerFeatures.map((feature) => {
-        const [lng, lat] = feature.geometry.coordinates;
-
-        return {
-          id: feature.id,
-          name: feature.properties.name,
-          description: feature.properties.description?.value || "",
-          coordinate: {
-            latitude: lat,
-            longitude: lng,
-          },
-        };
-      });
-
-      setMarkerPoints(markers); // <- set marker points
-    }
-  }, []);
-
-  // const keepMapInBounds = (region) => {
-  //   if (!mapBounds) return;
-
-  //   const { minLat, maxLat, minLng, maxLng } = mapBounds;
-
-  //   let latitude = region.latitude;
-  //   let longitude = region.longitude;
-
-  //   if (latitude < minLat) latitude = minLat;
-  //   if (latitude > maxLat) latitude = maxLat;
-  //   if (longitude < minLng) longitude = minLng;
-  //   if (longitude > maxLng) longitude = maxLng;
-
-  //   if (latitude !== region.latitude || longitude !== region.longitude) {
-  //     mapRef.current?.animateToRegion({
-  //       ...region,
-  //       latitude,
-  //       longitude,
-  //     });
+  //     if (polygonFeature.geometry.type === "Polygon") {
+  //       const rawCoords = polygonFeature.geometry.coordinates[0]; // outer ring
+  //       const formattedPolygon = rawCoords.map(([lng, lat]) => ({
+  //         latitude: lat,
+  //         longitude: lng,
+  //       }));
+  //       setPolygonCoordinates(formattedPolygon); // <- set university layout polygon
+  //       const bounds = getPolygonBounds(formattedPolygon);
+  //       setMapBounds(bounds);
+  //     }
   //   }
-  // };
+
+  //   // === Handle Marker Points (polygonData1) ===
+  //   if (polygonData1?.features?.length) {
+  //     const markerFeatures = polygonData1.features.filter(
+  //       (f) => f.geometry.type === "Point"
+  //     );
+
+  //     const markers = markerFeatures.map((feature) => {
+  //       const [lng, lat] = feature.geometry.coordinates;
+
+  //       return {
+  //         id: feature.id,
+  //         name: feature.properties.name,
+  //         description: feature.properties.description?.value || "",
+  //         coordinate: {
+  //           latitude: lat,
+  //           longitude: lng,
+  //         },
+  //       };
+  //     });
+
+  //     setMarkerPoints(markers); // <- set marker points
+  //   }
+  // }, []);
 
   const keepMapInBounds = (region) => {
     if (!mapBounds || !mapRef.current) return;

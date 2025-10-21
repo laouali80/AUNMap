@@ -18,6 +18,7 @@ import BuildingCard from "./components/BuildingCard";
 // const { width } = Dimensions.get("window");
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   const { width } = useWindowDimensions();
   // const navigation = useNavigation();
 
@@ -184,7 +185,10 @@ const HomeScreen = () => {
                 </View>
               </View>
 
-              <View style={styles.searchContainer}>
+              <TouchableOpacity
+                style={styles.searchContainer}
+                onPress={() => navigation.navigate("Search")}
+              >
                 <View style={styles.searchIcon}>
                   <Text>🔍</Text>
                 </View>
@@ -193,7 +197,7 @@ const HomeScreen = () => {
                   placeholder="Search campus locations..."
                   placeholderTextColor="#9CA3AF"
                 />
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
