@@ -16,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapViewLayout from "./components/MapViewLayout";
 import { Navigation } from "lucide-react-native";
+import DirectionsScreen from "./components/Directions";
 
 const { width, height } = Dimensions.get("window");
 
@@ -24,6 +25,7 @@ const MapScreen = () => {
   const pulseAnim = new Animated.Value(1);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [showDetail, setShowDetail] = useState(false);
+  const [directions, setDirections] = useState(false);
 
   // Start pulse animation
   React.useEffect(() => {
@@ -103,6 +105,8 @@ const MapScreen = () => {
   const handleGetDirections = () => {
     // Navigate to directions screen or show directions
     console.log("Get directions to:", selectedLocation.name);
+    setShowDetail(false);
+    setDirections(true);
   };
 
   const handleSaveLocation = () => {
@@ -204,6 +208,8 @@ const MapScreen = () => {
       <View style={styles.bottomPanel}>
         {showDetail && selectedLocation ? (
           <LocationDetailView />
+        ) : directions && selectedLocation ? (
+          <DirectionsScreen />
         ) : (
           <>
             <View style={styles.locationsHeader}>

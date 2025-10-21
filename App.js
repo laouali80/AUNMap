@@ -18,29 +18,29 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false, flex: 1 }}>
-          {!initialize ? (
-            <>
-              <Stack.Screen name="onboard" component={OnboardingScreen} />
-            </>
+          {/* {!initialize ? (
+            <> */}
+          <Stack.Screen name="onboard" component={OnboardingScreen} />
+          {/* </>
           ) : !authenticated ? (
-            <>
-              <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen name="SignUp" component={SignupScreen} />
-            </>
+            <> */}
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="SignUp" component={SignupScreen} />
+          {/* </>
           ) : (
-            <>
-              <Stack.Screen
-                name="Navigation"
-                component={BottomNavBar}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen
-                name="BuildingDetail"
-                component={BuildingDetailScreen}
-                options={{ headerShown: true }}
-              />
-            </>
-          )}
+            <> */}
+          <Stack.Screen
+            name="Navigation"
+            component={BottomNavBar}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="BuildingDetail"
+            component={BuildingDetailScreen}
+            options={{ headerShown: true }}
+          />
+          {/* </>
+          )} */}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
