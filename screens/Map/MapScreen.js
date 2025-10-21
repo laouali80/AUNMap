@@ -209,7 +209,7 @@ const MapScreen = () => {
         {showDetail && selectedLocation ? (
           <LocationDetailView />
         ) : directions && selectedLocation ? (
-          <DirectionsScreen />
+          <DirectionsScreen goBack={() => setDirections(false)} />
         ) : (
           <>
             <View style={styles.locationsHeader}>

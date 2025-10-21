@@ -8,6 +8,7 @@ import LoginScreen from "./screens/Auth/LoginScreen";
 import SignupScreen from "./screens/Auth/SignupScreen";
 import BottomNavBar from "./screens/Navigation/BottomNavBar";
 import BuildingDetailScreen from "./screens/Building/BuildingScreen";
+import SearchScreen from "./screens/Search/SearchScreen";
 
 const Stack = createStackNavigator();
 const initialize = true;
@@ -39,6 +40,12 @@ export default function App() {
             component={BuildingDetailScreen}
             options={{ headerShown: true }}
           />
+          <Stack.Screen
+            name="Search"
+            component={SearchScreen}
+            options={{ headerShown: true }}
+          />
+
           {/* </>
           )} */}
         </Stack.Navigator>

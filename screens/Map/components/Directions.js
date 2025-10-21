@@ -12,7 +12,7 @@ import {
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const DirectionsScreen = () => {
+const DirectionsScreen = ({ goBack }) => {
   const navigation = useNavigation();
   const route = useRoute();
   const [navigationStarted, setNavigationStarted] = useState(false);
@@ -102,10 +102,7 @@ const DirectionsScreen = () => {
       <View style={styles.content}>
         {/* Header */}
         <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={styles.backButton}
-          >
+          <TouchableOpacity onPress={goBack} style={styles.backButton}>
             <Text style={styles.backButtonText}>← Back</Text>
           </TouchableOpacity>
           <Text style={styles.title}>Directions</Text>
@@ -191,7 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#DBEAFE",
     borderRadius: 12,
     padding: 16,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   routeHeader: {
     flexDirection: "row",
