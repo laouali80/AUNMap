@@ -192,11 +192,9 @@ const HomeScreen = () => {
                 <View style={styles.searchIcon}>
                   <Text>🔍</Text>
                 </View>
-                <TextInput
-                  style={styles.searchInput}
-                  placeholder="Search campus locations..."
-                  placeholderTextColor="#9CA3AF"
-                />
+                <Text style={[styles.searchInput, { color: "#9CA3AF" }]}>
+                  Search campus locations...
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

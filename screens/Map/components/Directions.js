@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ChevronLeft } from "lucide-react-native";
 
 const DirectionsScreen = ({ goBack }) => {
   const navigation = useNavigation();
@@ -103,7 +104,14 @@ const DirectionsScreen = ({ goBack }) => {
         {/* Header */}
         <View style={styles.header}>
           <TouchableOpacity onPress={goBack} style={styles.backButton}>
-            <Text style={styles.backButtonText}>← Back</Text>
+            <View style={styles.backButtonText}>
+              <ChevronLeft color="#2563EB" />
+              <Text
+                style={{ color: "#2563EB", fontSize: 14, fontWeight: "500" }}
+              >
+                Back
+              </Text>
+            </View>
           </TouchableOpacity>
           <Text style={styles.title}>Directions</Text>
           <View style={styles.emptySpace} />
@@ -171,9 +179,11 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   backButtonText: {
-    color: "#2563EB",
-    fontSize: 14,
-    fontWeight: "500",
+    flexDirection: "row",
+
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "center",
   },
   title: {
     fontSize: 18,
@@ -187,7 +197,7 @@ const styles = StyleSheet.create({
   routeSummary: {
     backgroundColor: "#DBEAFE",
     borderRadius: 12,
-    padding: 16,
+    padding: 10,
     marginBottom: 10,
   },
   routeHeader: {

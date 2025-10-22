@@ -55,11 +55,11 @@ const OnboardingScreen = () => {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={state.id !== 3 ? nextBoard : () => navigateTo("SignUp")}
+            onPress={state.id !== 3 ? nextBoard : () => navigateTo("Guest")}
             style={styles.primaryButton}
           >
             <Text style={styles.primaryButtonText}>
-              {state.id !== 3 ? "Continue" : "Create Account"}
+              {state.id !== 3 ? "Continue" : "Guest User"}
             </Text>
           </TouchableOpacity>
 
