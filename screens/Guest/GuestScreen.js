@@ -14,11 +14,13 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapViewLayout from "./components/MapViewLayout";
 import { ChevronLeft, Navigation } from "lucide-react-native";
-import DirectionsScreen from "./components/Directions";
+import DirectionsScreen from "../Map/components/Directions";
+import MapViewLayout from "../Map/components/MapViewLayout";
 
-const MapScreen = () => {
+const { width, height } = Dimensions.get("window");
+
+const GuestScreen = () => {
   const navigation = useNavigation();
   const pulseAnim = new Animated.Value(1);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -50,16 +52,26 @@ const MapScreen = () => {
   const nearbyLocations = [
     {
       id: "1",
-      name: "Main Library",
-      description: "Central library with study spaces and computer labs",
-      category: "Academic",
+      name: "Admission Office",
+      description: "Handles student applications and inquiries",
+      category: "Administration",
       distance: "5 min walk",
-      icon: "📚",
+      icon: "🏫",
       color: "#3B82F6",
       bgColor: "#DBEAFE",
     },
     {
       id: "2",
+      name: "President Office",
+      description: "Office of the university president",
+      category: "Administration",
+      distance: "10 min walk",
+      icon: "🏛️",
+      color: "#8B5CF6",
+      bgColor: "#EDE9FE",
+    },
+    {
+      id: "3",
       name: "Student Cafeteria",
       description: "Main dining hall serving breakfast, lunch and dinner",
       category: "Dining",
@@ -69,24 +81,14 @@ const MapScreen = () => {
       bgColor: "#FFEDD5",
     },
     {
-      id: "3",
-      name: "Health Center",
-      description: "Campus medical services and counseling",
-      category: "Health",
+      id: "4",
+      name: "Commencement Hall",
+      description: "Venue for graduations and large events",
+      category: "Events",
       distance: "8 min walk",
-      icon: "🏥",
+      icon: "🎓",
       color: "#10B981",
       bgColor: "#D1FAE5",
-    },
-    {
-      id: "4",
-      name: "Gym Complex",
-      description: "Fitness center with pool and sports facilities",
-      category: "Recreation",
-      distance: "10 min walk",
-      icon: "🏀",
-      color: "#8B5CF6",
-      bgColor: "#EDE9FE",
     },
   ];
 
@@ -105,11 +107,6 @@ const MapScreen = () => {
     console.log("Get directions to:", selectedLocation.name);
     setShowDetail(false);
     setDirections(true);
-  };
-
-  const handleSaveLocation = () => {
-    // Save location logic
-    console.log("Save location:", selectedLocation.name);
   };
 
   const renderLocationItem = (location) => (
@@ -183,13 +180,6 @@ const MapScreen = () => {
             onPress={handleGetDirections}
           >
             <Text style={styles.primaryButtonText}>Get Directions</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.secondaryButton}
-            onPress={handleSaveLocation}
-          >
-            <Text style={styles.secondaryButtonText}>Save Location</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -563,4 +553,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapScreen;
+export default GuestScreen;
