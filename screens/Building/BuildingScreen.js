@@ -22,6 +22,7 @@ import {
 } from "lucide-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/core";
+import { BuildingCategories } from "../../mock-data/classes";
 
 const BuildingDetailScreen = ({ route }) => {
   const { building } = route.params;
@@ -57,97 +58,99 @@ const BuildingDetailScreen = ({ route }) => {
     description: "Main academic building housing classrooms and lecture halls",
   };
 
-  const locations = [
-    {
-      id: 1,
-      name: "Class A-101",
-      status: "available",
-      statusColor: "#16a34a",
-      statusBg: "#dcfce7",
-      description: "Standard classroom with projector and whiteboard",
-      floor: "1st Floor • A-101",
-      seats: 30,
-      amenities: ["Projector", "Whiteboard", "Air Conditioning", "WiFi"],
-      icon: "school",
-      iconColor: "#2563eb",
-    },
-    {
-      id: 2,
-      name: "Class A-102",
-      status: "occupied",
-      statusColor: "#dc2626",
-      statusBg: "#fecaca",
-      description: "Small classroom ideal for seminars",
-      floor: "1st Floor • A-102",
-      seats: 25,
-      amenities: ["Smart Board", "Air Conditioning", "WiFi"],
-      icon: "school",
-      iconColor: "#2563eb",
-    },
-    {
-      id: 3,
-      name: "Class B-201",
-      status: "available",
-      statusColor: "#16a34a",
-      statusBg: "#dcfce7",
-      description: "Large lecture hall with tiered seating",
-      floor: "2nd Floor • B-201",
-      seats: 80,
-      amenities: ["Projector", "Microphone System", "Tiered Seating", "WiFi"],
-      icon: "presentation",
-      iconColor: "#7c3aed",
-    },
-    {
-      id: 4,
-      name: "Class B-202",
-      status: "maintenance",
-      statusColor: "#ca8a04",
-      statusBg: "#fef9c3",
-      description: "Computer lab with latest software",
-      floor: "2nd Floor • B-202",
-      seats: 40,
-      amenities: ["40 Computers", "Software Suite", "Printer", "WiFi"],
-      icon: "computer",
-      iconColor: "#16a34a",
-    },
-    {
-      id: 5,
-      name: "Class C-301",
-      status: "available",
-      statusColor: "#16a34a",
-      statusBg: "#dcfce7",
-      description: "Meeting room for faculty and staff",
-      floor: "3rd Floor • C-301",
-      seats: 15,
-      amenities: [
-        "Conference Table",
-        "Video Conferencing",
-        "Whiteboard",
-        "WiFi",
-      ],
-      icon: "group",
-      iconColor: "#ea580c",
-    },
-    {
-      id: 6,
-      name: "Lecture Hall 1",
-      status: "occupied",
-      statusColor: "#dc2626",
-      statusBg: "#fecaca",
-      description: "Main lecture hall for large classes",
-      floor: "3rd Floor • LH-1",
-      seats: 120,
-      amenities: [
-        "Stage",
-        "Microphone System",
-        "Projector",
-        "Recording Equipment",
-      ],
-      icon: "presentation",
-      iconColor: "#7c3aed",
-    },
-  ];
+  // const locations = [
+  //   {
+  //     id: 1,
+  //     name: "Class 1",
+  //     directions: [{}],
+  //     status: "available",
+  //     statusColor: "#16a34a",
+  //     statusBg: "#dcfce7",
+  //     description: "Standard classroom with projector and whiteboard",
+  //     floor: "1st Floor • A-101",
+  //     seats: 30,
+  //     amenities: ["Projector", "Whiteboard", "Air Conditioning", "WiFi"],
+  //     icon: "school",
+  //     iconColor: "#2563eb",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Class 2",
+  //     status: "occupied",
+  //     statusColor: "#dc2626",
+  //     statusBg: "#fecaca",
+  //     description: "Small classroom ideal for seminars",
+  //     floor: "1st Floor • A-102",
+  //     seats: 25,
+  //     amenities: ["Smart Board", "Air Conditioning", "WiFi"],
+  //     icon: "school",
+  //     iconColor: "#2563eb",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Class 3",
+  //     status: "available",
+  //     statusColor: "#16a34a",
+  //     statusBg: "#dcfce7",
+  //     description: "Large lecture hall with tiered seating",
+  //     floor: "1st Floor • Library",
+  //     seats: 80,
+  //     amenities: ["Projector", "Microphone System", "Tiered Seating", "WiFi"],
+  //     icon: "presentation",
+  //     iconColor: "#7c3aed",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Class 7",
+  //     status: "maintenance",
+  //     statusColor: "#ca8a04",
+  //     statusBg: "#fef9c3",
+  //     description: "Computer lab with latest software",
+  //     floor: "2nd Floor • Library",
+  //     seats: 40,
+  //     amenities: ["40 Computers", "Software Suite", "Printer", "WiFi"],
+  //     icon: "computer",
+  //     iconColor: "#16a34a",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Class 8",
+  //     status: "available",
+  //     statusColor: "#16a34a",
+  //     statusBg: "#dcfce7",
+  //     description: "Meeting room for faculty and staff",
+  //     floor: "3nd Floor • Library",
+  //     seats: 15,
+  //     amenities: [
+  //       "Conference Table",
+  //       "Video Conferencing",
+  //       "Whiteboard",
+  //       "WiFi",
+  //     ],
+  //     icon: "group",
+  //     iconColor: "#ea580c",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "ADS 101",
+  //     status: "occupied",
+  //     statusColor: "#dc2626",
+  //     statusBg: "#fecaca",
+  //     description: "Main lecture hall for large classes",
+  //     floor: "1st Floor • Arts and Sciences",
+  //     seats: 120,
+  //     amenities: [
+  //       "Stage",
+  //       "Microphone System",
+  //       "Projector",
+  //       "Recording Equipment",
+  //     ],
+  //     icon: "presentation",
+  //     iconColor: "#7c3aed",
+  //   },
+  // ];
 
+  const locations = BuildingCategories[building.title] || [];
   const floors = [
     { id: "all", name: "All Floors" },
     { id: "1", name: "1st Floor" },
@@ -245,17 +248,28 @@ const BuildingDetailScreen = ({ route }) => {
                       <Text style={styles.locationDescription}>
                         {location.description}
                       </Text>
-                      <View style={styles.locationMeta}>
-                        <View style={styles.metaItem}>
-                          <MapPin size={14} color="#6b7280" />
-                          <Text style={styles.metaText}>{location.floor}</Text>
+                      {location?.floor && (
+                        <View style={styles.locationMeta}>
+                          <View style={styles.metaItem}>
+                            <MapPin size={14} color="#6b7280" />
+                            <Text style={styles.metaText}>
+                              {location.floor}
+                            </Text>
+                          </View>
                         </View>
-                      </View>
+                      )}
                     </View>
                   </View>
                   <TouchableOpacity
                     style={styles.navigationButton}
-                    onPress={() => navigation.navigate("Map", { location })}
+                    onPress={() =>
+                      navigation.navigate("Navigation", {
+                        screen: "Map",
+                        params: {
+                          redirectLocation: location,
+                        },
+                      })
+                    }
                   >
                     <Navigation size={16} color="#2563eb" />
                   </TouchableOpacity>
