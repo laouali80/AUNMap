@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -12,9 +12,48 @@ import {
   Platform,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import GlobalStorage from "../../state/globalStorage";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
+  const [err, setErr] = useState("");
+
+  const handleUpdEmail = (email) => {
+    setState((prevState) => ({ ...prevState, email: email.toLowerCase() }));
+    // setState({...state,username})
+  };
+  const handleUpdPassword = (password) => {
+    setState((prevState) => ({ ...prevState, password }));
+    // setState({ ...state, username });
+  };
+
+  const loginValidation = async () => {
+    const users = {
+      "sam@gmail.com": "password",
+    };
+    if (!state.email || !state.password) {
+      setErr("Missing email or Password");
+    } else if (!users[state.email]) {
+      // console.log("i am");
+      setErr("User does not exist");
+    } else if (users[state.email] !== state.password) {
+      setErr("Incorrect password");
+    } else {
+      // Use GlobalStorage for authentication
+      const result = GlobalStorage.loginUser(state.email, state.password);
+
+      if (result.success) {
+        console.log("Login successful:", GlobalStorage.getCurrentUser());
+        navigation.navigate("Navigation");
+      } else {
+        setErr(result.message);
+      }
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -40,12 +79,15 @@ const LoginScreen = () => {
 
             <View style={styles.formContainer}>
               <View style={styles.form}>
+                <Text style={styles.error}>{err}</Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Email Address"
                   placeholderTextColor="#6B7280"
                   keyboardType="email-address"
                   autoCapitalize="none"
+                  value={state.email}
+                  onChangeText={handleUpdEmail}
                 />
 
                 <TextInput
@@ -53,6 +95,8 @@ const LoginScreen = () => {
                   placeholder="Password"
                   placeholderTextColor="#6B7280"
                   secureTextEntry
+                  value={state.password}
+                  onChangeText={handleUpdPassword}
                 />
 
                 <TouchableOpacity>
@@ -62,7 +106,7 @@ const LoginScreen = () => {
                 <TouchableOpacity
                   style={styles.loginButton}
                   // onPress={() => navigation.navigate("Home")}
-                  onPress={() => navigation.navigate("Navigation")}
+                  onPress={() => loginValidation()}
                 >
                   <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
@@ -90,6 +134,11 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  error: {
+    textAlign: "center",
+    color: "red",
+    margin: 5,
   },
   backgroundImage: {
     flex: 1,
