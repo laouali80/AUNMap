@@ -14,12 +14,14 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BuildingCard from "./components/BuildingCard";
+import GlobalStorage from "../../state/globalStorage";
 
 // const { width } = Dimensions.get("window");
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const { width } = useWindowDimensions();
+  const currentUser = GlobalStorage.getCurrentUser();
   // const navigation = useNavigation();
 
   // Calculate if we should show 1 or 2 cards per row based on screen width
@@ -30,7 +32,7 @@ const HomeScreen = () => {
   const frequentLocations = [
     {
       id: "1",
-      name: "Library Main Hall",
+      name: "Robert Library",
       category: "Study",
       visits: 24,
       icon: "📚",
@@ -46,7 +48,7 @@ const HomeScreen = () => {
     },
     {
       id: "3",
-      name: "Class A-101",
+      name: "24 hours Library",
       category: "Academic",
       visits: 15,
       icon: "🏫",
@@ -62,7 +64,7 @@ const HomeScreen = () => {
     },
     {
       id: "5",
-      name: "Computer Lab B",
+      name: "Computer Lab",
       category: "Study",
       visits: 10,
       icon: "💻",
@@ -78,7 +80,7 @@ const HomeScreen = () => {
       count: 6,
       icon: "🏫",
       gradient: ["#60A5FA", "#3B82F6"],
-      locations: ["Class A-101", "Class A-102", "Class B-201", "+3 more"],
+      locations: ["Classroom 1", "Classroom 2", "Classroom 3", "+3 more"],
     },
     {
       id: "2",
@@ -88,7 +90,7 @@ const HomeScreen = () => {
       gradient: ["#A78BFA", "#8B5CF6"],
       locations: [
         "President Office",
-        "Dean Office",
+        "Provost Office",
         "Student Affairs",
         "+3 more",
       ],
@@ -99,12 +101,7 @@ const HomeScreen = () => {
       count: 5,
       icon: "🏠",
       gradient: ["#34D399", "#10B981"],
-      locations: [
-        "Dorm A - East Wing",
-        "Dorm A - West Wing",
-        "Dorm B - North",
-        "+2 more",
-      ],
+      locations: ["Dorm AA", "Dorm FF", "Dorm BB", "+2 more"],
     },
     {
       id: "4",
@@ -120,12 +117,7 @@ const HomeScreen = () => {
       count: 6,
       icon: "📚",
       gradient: ["#F472B6", "#EC4899"],
-      locations: [
-        "Main Library",
-        "Computer Lab A",
-        "Computer Lab B",
-        "+3 more",
-      ],
+      locations: ["Academic Advisor", "Registrar Office", "Library", "+3 more"],
     },
     {
       id: "6",
@@ -133,12 +125,7 @@ const HomeScreen = () => {
       count: 5,
       icon: "🏥",
       gradient: ["#2DD4BF", "#14B8A6"],
-      locations: [
-        "Health Center",
-        "Counseling Services",
-        "Campus Store",
-        "+2 more",
-      ],
+      locations: ["Health Center", "Copy Center", "Campus Store", "+2 more"],
     },
   ];
 
@@ -178,7 +165,9 @@ const HomeScreen = () => {
               <View style={styles.headerTop}>
                 <View>
                   <Text style={styles.logo}>Campus</Text>
-                  <Text style={styles.welcome}>Welcome back, Sarah!</Text>
+                  <Text style={styles.welcome}>
+                    Welcome back, {currentUser?.firstName}!
+                  </Text>
                 </View>
                 <View style={styles.avatar}>
                   <Text style={styles.avatarIcon}>👤</Text>
