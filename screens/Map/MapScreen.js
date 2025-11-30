@@ -18,12 +18,17 @@ import MapViewLayout from "./components/MapViewLayout";
 import { ChevronLeft, Navigation } from "lucide-react-native";
 import DirectionsScreen from "./components/Directions";
 
-const MapScreen = () => {
+const MapScreen = ({ route }) => {
+  const { redirectLocation } = route?.params || {};
+  console.log("Redirect Location:", redirectLocation);
   const navigation = useNavigation();
   const pulseAnim = new Animated.Value(1);
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const initSelectedLocation = redirectLocation ? redirectLocation : null;
+  const initDirections = redirectLocation ? true : false;
+  const [selectedLocation, setSelectedLocation] =
+    useState(initSelectedLocation);
   const [showDetail, setShowDetail] = useState(false);
-  const [directions, setDirections] = useState(false);
+  const [directions, setDirections] = useState(initDirections);
 
   // Start pulse animation
   React.useEffect(() => {
@@ -57,6 +62,30 @@ const MapScreen = () => {
       icon: "📚",
       color: "#3B82F6",
       bgColor: "#DBEAFE",
+      directions: [
+        {
+          id: "1",
+          instruction: "Head past the bus stop after exiting the cafeteria",
+          distance: "200m",
+          time: "3 mins",
+          type: "start",
+        },
+        {
+          id: "2",
+          instruction:
+            "Turn right at the intersection and head straight to Robert A. Pastor Library and E-learning Center",
+          distance: "100m",
+          time: "2 mins",
+          type: "turn",
+        },
+        {
+          id: "3",
+          instruction: "Your destination, Main Library",
+          distance: "0m",
+          time: "0 mins",
+          type: "destination",
+        },
+      ],
     },
     {
       id: "2",
@@ -67,6 +96,30 @@ const MapScreen = () => {
       icon: "🍽️",
       color: "#F97316",
       bgColor: "#FFEDD5",
+      directions: [
+        {
+          id: "1",
+          instruction:
+            "From the entrance of the library, head straight toward the new football field.",
+          distance: "200m",
+          time: "3 mins",
+          type: "start",
+        },
+        {
+          id: "2",
+          instruction: "Turn right and walk past the bus stop",
+          distance: "100m",
+          time: "2 mins",
+          type: "turn",
+        },
+        {
+          id: "3",
+          instruction: "Your destination, Student Cafeteria",
+          distance: "0m",
+          time: "0 mins",
+          type: "destination",
+        },
+      ],
     },
     {
       id: "3",
@@ -77,6 +130,29 @@ const MapScreen = () => {
       icon: "🏥",
       color: "#10B981",
       bgColor: "#D1FAE5",
+      directions: [
+        {
+          id: "1",
+          instruction: "Head to Admin 1 and admin 2 buildings.",
+          distance: "200m",
+          time: "3 mins",
+          type: "start",
+        },
+        {
+          id: "2",
+          instruction: "Go straight to the end of the road and turn left",
+          distance: "100m",
+          time: "2 mins",
+          type: "turn",
+        },
+        {
+          id: "3",
+          instruction: "Your destination, Health Center",
+          distance: "0m",
+          time: "0 mins",
+          type: "destination",
+        },
+      ],
     },
     {
       id: "4",
@@ -87,8 +163,34 @@ const MapScreen = () => {
       icon: "🏀",
       color: "#8B5CF6",
       bgColor: "#EDE9FE",
+      directions: [
+        {
+          id: "1",
+          instruction: "Head to the commencement hall",
+          distance: "200m",
+          time: "3 mins",
+          type: "start",
+        },
+        {
+          id: "2",
+          instruction:
+            "Go straight to the end of basketball court and turn left",
+          distance: "100m",
+          time: "2 mins",
+          type: "turn",
+        },
+        {
+          id: "3",
+          instruction: "Your destination, Gym Complex",
+          distance: "0m",
+          time: "0 mins",
+          type: "destination",
+        },
+      ],
     },
   ];
+
+  // console.log("Selected Location:", selectedLocation);
 
   const handleLocationPress = (location) => {
     setSelectedLocation(location);
@@ -210,7 +312,10 @@ const MapScreen = () => {
         {showDetail && selectedLocation ? (
           <LocationDetailView />
         ) : directions && selectedLocation ? (
-          <DirectionsScreen goBack={() => setDirections(false)} />
+          <DirectionsScreen
+            goBack={() => setDirections(false)}
+            selectedLocation={selectedLocation}
+          />
         ) : (
           <>
             <View style={styles.locationsHeader}>
