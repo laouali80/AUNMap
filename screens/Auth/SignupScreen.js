@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomCheckbox from "../../components/CustomCheckbox";
+import GlobalStorage from "../../state/globalStorage";
 
 const SignupScreen = () => {
   const navigation = useNavigation();
@@ -24,13 +25,57 @@ const SignupScreen = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    // agree: false,
   });
+  const [err, setErr] = useState("");
 
   const handleInputChange = (name, value) => {
     setFormData({
       ...formData,
       [name]: value,
     });
+  };
+
+  const signUpValidation = async () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword ||
+      !isChecked
+    ) {
+      setErr("Missing required fields!! Please fill all the details.");
+    } else if (formData.password !== formData.confirmPassword) {
+      // console.log("i am");
+      setErr("Passwords do not match");
+    } else if (!emailRegex.test(formData.email)) {
+      setErr("Invalid email address");
+    } else {
+      // Create user object
+      const newUser = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+        agree: isChecked,
+      };
+
+      // Register user in global storage
+      const result = GlobalStorage.registerUser(newUser);
+
+      if (result.success) {
+        console.log(
+          "User registered successfully:",
+          GlobalStorage.getCurrentUser()
+        );
+        navigation.navigate("Navigation");
+      } else {
+        setErr(result.message);
+      }
+    }
   };
 
   return (
@@ -58,6 +103,7 @@ const SignupScreen = () => {
 
             <View style={styles.formContainer}>
               <View style={styles.form}>
+                <Text style={styles.error}>{err}</Text>
                 <View style={styles.nameContainer}>
                   <View style={styles.nameInput}>
                     <TextInput
@@ -130,7 +176,7 @@ const SignupScreen = () => {
 
                 <TouchableOpacity
                   style={styles.signupButton}
-                  onPress={() => navigation.navigate("Navigation")}
+                  onPress={() => signUpValidation()}
                 >
                   <Text style={styles.signupButtonText}>Create Account</Text>
                 </TouchableOpacity>
@@ -159,6 +205,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  error: {
+    textAlign: "center",
+    color: "red",
+    margin: 5,
+  },
+
   backgroundImage: {
     flex: 1,
     width: "100%",
