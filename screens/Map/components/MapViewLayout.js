@@ -1,6 +1,6 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-// import MapView, { Marker, Polygon } from "react-native-maps";
+import MapView, { Marker, Polygon } from "react-native-maps";
 import * as Location from "expo-location";
 import polygonData2 from "../../../constant/AUNMap-Polygon/AUNMap-Polygon2.json";
 import polygonData1 from "../../../constant/AUNMap-Polygon/AUNMap-Polygon1.json";
@@ -16,65 +16,65 @@ const MapViewLayout = () => {
   const mapRef = useRef(null);
   const [mapType, setMapType] = useState("standard");
 
-  // useLayoutEffect(() => {
-  //   async function getCurrentLocation() {
-  //     let { status } = await Location.requestForegroundPermissionsAsync();
-  //     // console.log("here........ ", status);
-  //     if (status !== "granted") {
-  //       setErrorMsg("Permission to access location was denied");
-  //       return;
-  //     }
+  useLayoutEffect(() => {
+    async function getCurrentLocation() {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      // console.log("here........ ", status);
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
 
-  //     let location = await Location.getCurrentPositionAsync({});
-  //     //   let nigelec = await Location.geocodeAsync("A8, Wuro Jebbe, Nigeria");
-  //     // console.log(location);
-  //     setCurrentLocation(location);
-  //     //   setGeoLocat(nigelec[0]);
-  //   }
+      let location = await Location.getCurrentPositionAsync({});
+      //   let nigelec = await Location.geocodeAsync("A8, Wuro Jebbe, Nigeria");
+      // console.log(location);
+      setCurrentLocation(location);
+      //   setGeoLocat(nigelec[0]);
+    }
 
-  //   getCurrentLocation();
-  // }, []);
+    getCurrentLocation();
+  }, []);
 
-  // useEffect(() => {
-  //   // === Handle University Polygon (polygonData1) ===
-  //   if (polygonData2?.features?.length) {
-  //     const polygonFeature = polygonData2.features[0];
+  useEffect(() => {
+    // === Handle University Polygon (polygonData1) ===
+    if (polygonData2?.features?.length) {
+      const polygonFeature = polygonData2.features[0];
 
-  //     if (polygonFeature.geometry.type === "Polygon") {
-  //       const rawCoords = polygonFeature.geometry.coordinates[0]; // outer ring
-  //       const formattedPolygon = rawCoords.map(([lng, lat]) => ({
-  //         latitude: lat,
-  //         longitude: lng,
-  //       }));
-  //       setPolygonCoordinates(formattedPolygon); // <- set university layout polygon
-  //       const bounds = getPolygonBounds(formattedPolygon);
-  //       setMapBounds(bounds);
-  //     }
-  //   }
+      if (polygonFeature.geometry.type === "Polygon") {
+        const rawCoords = polygonFeature.geometry.coordinates[0]; // outer ring
+        const formattedPolygon = rawCoords.map(([lng, lat]) => ({
+          latitude: lat,
+          longitude: lng,
+        }));
+        setPolygonCoordinates(formattedPolygon); // <- set university layout polygon
+        const bounds = getPolygonBounds(formattedPolygon);
+        setMapBounds(bounds);
+      }
+    }
 
-  //   // === Handle Marker Points (polygonData1) ===
-  //   if (polygonData1?.features?.length) {
-  //     const markerFeatures = polygonData1.features.filter(
-  //       (f) => f.geometry.type === "Point"
-  //     );
+    // === Handle Marker Points (polygonData1) ===
+    if (polygonData1?.features?.length) {
+      const markerFeatures = polygonData1.features.filter(
+        (f) => f.geometry.type === "Point"
+      );
 
-  //     const markers = markerFeatures.map((feature) => {
-  //       const [lng, lat] = feature.geometry.coordinates;
+      const markers = markerFeatures.map((feature) => {
+        const [lng, lat] = feature.geometry.coordinates;
 
-  //       return {
-  //         id: feature.id,
-  //         name: feature.properties.name,
-  //         description: feature.properties.description?.value || "",
-  //         coordinate: {
-  //           latitude: lat,
-  //           longitude: lng,
-  //         },
-  //       };
-  //     });
+        return {
+          id: feature.id,
+          name: feature.properties.name,
+          description: feature.properties.description?.value || "",
+          coordinate: {
+            latitude: lat,
+            longitude: lng,
+          },
+        };
+      });
 
-  //     setMarkerPoints(markers); // <- set marker points
-  //   }
-  // }, []);
+      setMarkerPoints(markers); // <- set marker points
+    }
+  }, []);
 
   const keepMapInBounds = (region) => {
     if (!mapBounds || !mapRef.current) return;
@@ -142,7 +142,7 @@ const MapViewLayout = () => {
   // console.log("polygonCoordinates:", polygonCoordinates);
   return (
     <View style={styles.mapContainer}>
-      {/* {currentLocation && (
+      {currentLocation && (
         <MapView
           style={{ flex: 1 }}
           ref={mapRef}
@@ -157,6 +157,7 @@ const MapViewLayout = () => {
           onRegionChangeComplete={keepMapInBounds}
           showsUserLocation={true}
           showsMyLocationButton={true}
+          mapType={mapType}
         >
           {polygonCoordinates.length > 2 && (
             <Polygon
@@ -188,7 +189,7 @@ const MapViewLayout = () => {
             // onPress={() => handleLocationPress(currentLocation)}
           />
         </MapView>
-      )} */}
+      )}
       <Button
         title="Toggle Map Type"
         style={{ position: "absolute", bottom: 10, right: 10, width: 150 }}

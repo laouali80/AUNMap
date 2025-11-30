@@ -12,6 +12,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LogOut, Pen } from "lucide-react-native";
+import GlobalStorage from "../../state/globalStorage";
 
 const { width } = Dimensions.get("window");
 
@@ -19,6 +20,7 @@ const ProfileScreen = () => {
   const navigation = useNavigation();
   const [activeTab, setActiveTab] = useState("Overview");
   const [infoModal, setInfoModal] = useState(false);
+  const currentUser = GlobalStorage.getCurrentUser();
 
   // Profile statistics
   const profileStats = [
@@ -53,12 +55,12 @@ const ProfileScreen = () => {
     {
       id: "1",
       label: "Full Name",
-      value: "Sarah Johnson",
+      value: `${currentUser?.firstName} ${currentUser?.lastName}`,
     },
     {
       id: "2",
       label: "Email",
-      value: "sarah.johnson@aun.edu.ng",
+      value: currentUser?.email,
     },
   ];
 
@@ -108,13 +110,15 @@ const ProfileScreen = () => {
         <View style={styles.profileInfo}>
           <View style={styles.avatarContainer}>
             <Image
-              source={require("../../assets/images/sarah.jpg")}
+              source={require("../../assets/images/default.png")}
               style={styles.avatar}
             />
           </View>
           <View style={styles.profileDetails}>
-            <Text style={styles.profileName}>Sarah Johnson</Text>
-            <Text style={styles.profileRole}>sarah.johnson@aun.edu.ng</Text>
+            <Text style={styles.profileName}>
+              {currentUser?.firstName} {currentUser?.lastName}
+            </Text>
+            <Text style={styles.profileRole}>{currentUser?.email}</Text>
           </View>
         </View>
 
@@ -129,7 +133,7 @@ const ProfileScreen = () => {
         contentContainerStyle={styles.scrollContent}
       >
         {/* Tab Navigation */}
-        <View style={styles.tabContainer}>
+        {/* <View style={styles.tabContainer}>
           <TouchableOpacity
             style={[styles.tab, activeTab === "Overview" && styles.activeTab]}
             onPress={() => setActiveTab("Overview")}
@@ -172,81 +176,81 @@ const ProfileScreen = () => {
               History
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         {/* Content based on active tab */}
-        {activeTab === "Overview" && (
-          <View style={styles.tabContent}>
-            {/* Personal Information */}
-            <View style={styles.section}>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: 16,
-                }}
-              >
-                <Text style={styles.sectionTitle}>Personal Information</Text>
-                <TouchableOpacity onPress={() => setInfoModal(true)}>
-                  <Pen size={16} color="#2563eb" />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.infoList}>
-                {personalInfo.map(renderInfoItem)}
-              </View>
-            </View>
-
-            {/* Campus Activity */}
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Campus Activity</Text>
-              <View style={styles.activityCard}>
-                <View style={styles.activityContent}>
-                  <View style={styles.activityIcon}>
-                    <Text style={styles.activityIconText}>📚</Text>
-                  </View>
-                  <View style={styles.activityInfo}>
-                    <Text style={styles.activityTitle}>
-                      Most Visited Category
-                    </Text>
-                    <Text style={styles.activitySubtitle}>
-                      Academic Buildings
-                    </Text>
-                  </View>
-                </View>
-                <View style={styles.activityStats}>
-                  <Text style={styles.activityPercentage}>67%</Text>
-                  <Text style={styles.activityLabel}>of visits</Text>
-                </View>
-              </View>
-            </View>
-
-            <TouchableOpacity
+        {/* {activeTab === "Overview" && ( */}
+        <View style={styles.tabContent}>
+          {/* Personal Information */}
+          <View style={styles.section}>
+            <View
               style={{
-                backgroundColor: "#2563EB",
-                // paddingVertical: 14,
-                // borderRadius: 12,
-                // alignItems: "center",
-                // marginBottom: 12,
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "space-between",
                 alignItems: "center",
-                gap: 8,
-                marginTop: 16,
-                paddingVertical: 12,
-                borderRadius: 8,
-                flex: 1,
-                alignItems: "center",
+                marginBottom: 16,
               }}
-              onPress={() => navigation.navigate("Login")}
             >
-              <LogOut size={20} color="white" />
-              <Text style={{ color: "white" }}>Sign out</Text>
-            </TouchableOpacity>
+              <Text style={styles.sectionTitle}>Personal Information</Text>
+              <TouchableOpacity onPress={() => setInfoModal(true)}>
+                <Pen size={16} color="#2563eb" />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.infoList}>
+              {personalInfo.map(renderInfoItem)}
+            </View>
           </View>
-        )}
 
-        {activeTab === "Achievements" && (
+          {/* Campus Activity */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Campus Activity</Text>
+            <View style={styles.activityCard}>
+              <View style={styles.activityContent}>
+                <View style={styles.activityIcon}>
+                  <Text style={styles.activityIconText}>📚</Text>
+                </View>
+                <View style={styles.activityInfo}>
+                  <Text style={styles.activityTitle}>
+                    Most Visited Category
+                  </Text>
+                  <Text style={styles.activitySubtitle}>
+                    Academic Buildings
+                  </Text>
+                </View>
+              </View>
+              <View style={styles.activityStats}>
+                <Text style={styles.activityPercentage}>67%</Text>
+                <Text style={styles.activityLabel}>of visits</Text>
+              </View>
+            </View>
+          </View>
+
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#2563EB",
+              // paddingVertical: 14,
+              // borderRadius: 12,
+              // alignItems: "center",
+              // marginBottom: 12,
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 8,
+              marginTop: 16,
+              paddingVertical: 12,
+              borderRadius: 8,
+              flex: 1,
+              alignItems: "center",
+            }}
+            onPress={() => navigation.navigate("Login")}
+          >
+            <LogOut size={20} color="white" />
+            <Text style={{ color: "white" }}>Sign out</Text>
+          </TouchableOpacity>
+        </View>
+        {/* )} */}
+
+        {/* {activeTab === "Achievements" && (
           <View style={styles.tabContent}>
             <Text style={styles.comingSoon}>Achievements coming soon...</Text>
           </View>
@@ -256,7 +260,7 @@ const ProfileScreen = () => {
           <View style={styles.tabContent}>
             <Text style={styles.comingSoon}>History coming soon...</Text>
           </View>
-        )}
+        )} */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -410,6 +414,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   tabContent: {
+    marginTop: 16,
     padding: 16,
     paddingTop: 0,
   },
