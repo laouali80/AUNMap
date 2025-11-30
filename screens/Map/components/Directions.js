@@ -13,45 +13,46 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ChevronLeft } from "lucide-react-native";
 
-const DirectionsScreen = ({ goBack }) => {
+const DirectionsScreen = ({ goBack, selectedLocation }) => {
   const navigation = useNavigation();
-  const route = useRoute();
+  // const route = useRoute();
   const [navigationStarted, setNavigationStarted] = useState(false);
 
-  const destination = route.params?.destination || "Health Center";
+  // const destination = route.params?.destination || "Health Center";
+  const destination = selectedLocation?.name;
 
   const routeInfo = {
     type: "Walking Route",
     time: "6 min",
     distance: "0.3 mi",
     description: `Fastest route to ${destination}`,
-    eta: "2:45 PM", // Estimated arrival time
+    // eta: "2:45 PM", // Estimated arrival time
   };
 
-  const steps = [
-    {
-      id: "1",
-      instruction: "Head northeast on Campus Drive toward Academic Plaza",
-      distance: "0.2 mi",
-      time: "3 min",
-      type: "start",
-    },
-    {
-      id: "2",
-      instruction: "Turn left at the fountain and continue straight",
-      distance: "0.1 mi",
-      time: "2 min",
-      type: "turn",
-    },
-    {
-      id: "3",
-      instruction: "Enter the building on your right",
-      distance: "50 ft",
-      time: "1 min",
-      type: "destination",
-    },
-  ];
-
+  // const steps = [
+  //   {
+  //     id: "1",
+  //     instruction: "Head northeast on Campus Drive toward Academic Plaza",
+  //     distance: "0.2 mi",
+  //     time: "3 min",
+  //     type: "start",
+  //   },
+  //   {
+  //     id: "2",
+  //     instruction: "Turn left at the fountain and continue straight",
+  //     distance: "0.1 mi",
+  //     time: "2 min",
+  //     type: "turn",
+  //   },
+  //   {
+  //     id: "3",
+  //     instruction: "Enter the building on your right",
+  //     distance: "50 ft",
+  //     time: "1 min",
+  //     type: "destination",
+  //   },
+  // ];
+  const steps = selectedLocation?.directions || [];
   const handleStartNavigation = () => {
     setNavigationStarted(true);
     Alert.alert(
@@ -82,7 +83,13 @@ const DirectionsScreen = ({ goBack }) => {
   };
 
   const renderStep = (step, index) => (
-    <View key={step.id} style={styles.stepContainer}>
+    <View
+      key={step.id}
+      style={[
+        styles.stepContainer,
+        // { borderColor: "red", borderWidth: 2 }
+      ]}
+    >
       <View style={styles.stepIconContainer}>
         <Text style={styles.stepIcon}>{getStepIcon(step.type)}</Text>
         {index < steps.length - 1 && <View style={styles.stepLine} />}
@@ -126,10 +133,10 @@ const DirectionsScreen = ({ goBack }) => {
             </Text>
           </View>
           <Text style={styles.routeDescription}>{routeInfo.description}</Text>
-          <View style={styles.etaContainer}>
+          {/* <View style={styles.etaContainer}>
             <Text style={styles.etaLabel}>ETA: </Text>
             <Text style={styles.etaTime}>{routeInfo.eta}</Text>
-          </View>
+          </View> */}
         </View>
 
         {/* Steps List */}
@@ -167,7 +174,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
   header: {
     flexDirection: "row",
@@ -247,7 +255,7 @@ const styles = StyleSheet.create({
   stepContainer: {
     flexDirection: "row",
     alignItems: "flex-start",
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   stepIconContainer: {
     alignItems: "center",
